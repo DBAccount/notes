@@ -3,6 +3,7 @@
 ## Concepts
 
 Microsoft Qlib - quantitative algorith
+https://www.microsoft.com/en-us/research/publication/qlib-an-ai-oriented-quantitative-investment-platform/
 
 ## Commands
 
