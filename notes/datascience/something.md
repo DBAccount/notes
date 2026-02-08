@@ -2,7 +2,7 @@
 
 ## Concepts
 
-*No content*
+Microsoft Qlib - quantitative algorith
 
 ## Commands
 
@@ -16,4 +16,4 @@
 ---
 
 *Created: February 8, 2026 at 06:26 PM*
-*Updated: February 8, 2026 at 06:26 PM*
+*Updated: February 8, 2026 at 06:27 PM*
