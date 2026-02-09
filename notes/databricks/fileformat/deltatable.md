@@ -3,6 +3,7 @@
 ## Concepts
 
 How does delta table works
+How can we apply ACIP principle to it.
 
 ## Commands
 
@@ -16,4 +17,4 @@ How does delta table works
 ---
 
 *Created: February 9, 2026 at 11:46 AM*
-*Updated: February 9, 2026 at 11:47 AM*
+*Updated: February 9, 2026 at 11:49 AM*
