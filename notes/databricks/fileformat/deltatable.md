@@ -3,6 +3,10 @@
 ## Concepts
 
 How does delta table works
+```
+code block
+```
+
 How can we apply ACIP principle to it.
 
 ## Commands
