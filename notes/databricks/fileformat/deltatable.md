@@ -2,7 +2,7 @@
 
 ## Concepts
 
-*No content*
+How does delta table works
 
 ## Commands
 
@@ -16,4 +16,4 @@
 ---
 
 *Created: February 9, 2026 at 11:46 AM*
-*Updated: February 9, 2026 at 11:46 AM*
+*Updated: February 9, 2026 at 11:47 AM*
