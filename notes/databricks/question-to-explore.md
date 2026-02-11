@@ -4,7 +4,7 @@
 
 1. How Delta table works. 
 2. How checkpoint works.
-4. How broze and silver table communicate.
+4. How bronze and silver table communicate/progress in streaming world.
 
 ## Commands
 
