@@ -2,7 +2,7 @@
 
 ## Concepts
 
-*No content*
+https://medium.com/data-science-collective/it-took-me-6-years-to-find-the-best-metric-for-classification-models-0f5aa21a2b85
 
 ## Commands
 
