@@ -86,24 +86,82 @@ In the optimized $O(N)$ version shown at the end of the video, you don't use `nu
 
 
 
-**Optimizing for Frequency Equality**
+To make the solution $O(N)$ and avoid the Time Limit Exceeded error, we must update the frequency counts **incrementally** as we iterate through the array. This allows us to check the three scenarios in constant time at each step.
 
-I'm now focusing on developing an optimized Python solution for LeetCode problem 1224. The core challenge remains finding the longest prefix where removing a single element results in equal frequencies. I'm prioritizing efficient frequency tracking and minimizing redundant computations. The goal is a Python implementation that leverages the understanding derived from the video's formulas and brute-force approach.
+### Optimized Python Solution
 
+```python
+from collections import defaultdict
 
-**Analyzing Frequency Changes**
+def maxEqualFreq(nums):
+    # count: maps element -> its frequency (how many times it appeared)
+    count = defaultdict(int)
+    # freq: maps frequency -> how many distinct elements have that frequency
+    freq = defaultdict(int)
+    
+    max_freq = 0
+    ans = 0
+    distinct_elements = 0
 
-I've made progress on optimizing the LeetCode 1224 solution to O(N) complexity. The focus is now on efficiently managing frequency counts. I'm using `count` and `freq` dictionaries to track element frequencies and the count of elements with each frequency, respectively. I'm also tracking `max_freq` as I iterate. I'm focusing on the three scenarios that emerge and applying the derived formulas as updates occur.
+    for i, x in enumerate(nums):
+        # L is the current prefix length
+        L = i + 1
+        
+        # 1. Update the state for element x
+        if x in count:
+            old_f = count[x]
+            freq[old_f] -= 1
+        else:
+            distinct_elements += 1
+            
+        count[x] += 1
+        new_f = count[x]
+        freq[new_f] += 1
+        
+        # 2. Track the global maximum frequency
+        max_freq = max(max_freq, new_f)
+        
+        # 3. Check the Scenarios using the Formulas
+        possible = False
+        
+        # Scenario 1: All unique or only one distinct number type
+        # e.g., [1, 2, 3, 4] or [5, 5, 5, 5]
+        if max_freq == 1 or distinct_elements == 1:
+            possible = True
+            
+        # Scenario 2: One outlier has frequency 1, others have max_freq
+        # Formula: (max_freq * count_of_max_freq_elements) + 1 == Total Length
+        # e.g., [2, 2, 1, 1, 5] -> (2 * 2) + 1 = 5
+        elif (max_freq * freq[max_freq]) + 1 == L:
+            possible = True
+            
+        # Scenario 3: One outlier has max_freq, others have max_freq - 1
+        # Formula: (max_freq - 1) * (distinct_elements - 1) + max_freq == Total Length
+        # Also requires that there is only ONE element with the max frequency.
+        # e.g., [1, 1, 2, 2, 3, 3, 3] -> (2 * 2) + 3 = 7
+        elif freq[max_freq] == 1 and ((max_freq - 1) * (distinct_elements - 1)) + max_freq == L:
+            possible = True
+            
+        if possible:
+            ans = L
+            
+    return ans
 
+# Testing with an example
+nums = [2, 2, 1, 1, 5, 3, 3, 5]
+print(f"Longest prefix length: {maxEqualFreq(nums)}") 
+# Output: 7 (Prefix [2, 2, 1, 1, 5, 3, 3])
+```
 
-**Refining Formula Applications**
+### Key Optimizations Explained:
+1.  **Single Pass ($O(N)$):** We traverse the list `nums` exactly once.
+2.  **Incremental Updates:** Instead of re-calculating `max()` or `sum()` over the whole dictionary at every index, we update `count`, `freq`, and `max_freq` in $O(1)$ time per step.
+3.  **Space Complexity ($O(D)$):** We store counts for $D$ distinct elements, which is at most $O(N)$.
 
-My current focus is on refining the application of the derived formulas within the LeetCode 1224 solution. I'm carefully evaluating the conditions for each of the three cases outlined, ensuring accurate logic. My aim is to apply the formulae correctly when conditions are met. I'm also exploring different ways to track the `distinct_elements` count, either directly or indirectly using the `count` dictionary.
-
-
-**Evaluating Edge Cases**
-
-I'm now focusing on evaluating the logic for edge cases in my LeetCode 1224 solution. I'm carefully scrutinizing the conditional checks for the cases where a solution is possible. Specifically, I'm verifying the correctness of the conditions where either all frequencies are 1, or there's a single element type. Additionally, I'm examining the scenario where one element appears only once and all others have identical frequencies, trying to ensure there are no off-by-one errors.
+### Why it passes:
+The constraints are $N = 10^5$. 
+*   **Brute Force:** $10^5 \times 10^5 = 10^{10}$ operations (Too slow).
+*   **Optimized:** $10^5$ operations (Passes in ~50-100ms).
 
 ## Commands
 
@@ -117,4 +175,4 @@ I'm now focusing on evaluating the logic for edge cases in my LeetCode 1224 solu
 ---
 
 *Created: February 16, 2026 at 02:13 PM*
-*Updated: February 16, 2026 at 02:14 PM*
+*Updated: February 16, 2026 at 02:15 PM*
