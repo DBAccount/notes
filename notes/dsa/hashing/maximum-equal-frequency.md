@@ -84,6 +84,27 @@ print(maxEqualFreq_brute_force(nums)) # Output: 7
 ### Why the optimized version is better:
 In the optimized $O(N)$ version shown at the end of the video, you don't use `nums[:i+1]` or `Counter(prefix)` inside the loop. Instead, you update the `counts` and the `freq_of_freq` maps **incrementally** as you iterate through the array once.
 
+
+
+**Optimizing for Frequency Equality**
+
+I'm now focusing on developing an optimized Python solution for LeetCode problem 1224. The core challenge remains finding the longest prefix where removing a single element results in equal frequencies. I'm prioritizing efficient frequency tracking and minimizing redundant computations. The goal is a Python implementation that leverages the understanding derived from the video's formulas and brute-force approach.
+
+
+**Analyzing Frequency Changes**
+
+I've made progress on optimizing the LeetCode 1224 solution to O(N) complexity. The focus is now on efficiently managing frequency counts. I'm using `count` and `freq` dictionaries to track element frequencies and the count of elements with each frequency, respectively. I'm also tracking `max_freq` as I iterate. I'm focusing on the three scenarios that emerge and applying the derived formulas as updates occur.
+
+
+**Refining Formula Applications**
+
+My current focus is on refining the application of the derived formulas within the LeetCode 1224 solution. I'm carefully evaluating the conditions for each of the three cases outlined, ensuring accurate logic. My aim is to apply the formulae correctly when conditions are met. I'm also exploring different ways to track the `distinct_elements` count, either directly or indirectly using the `count` dictionary.
+
+
+**Evaluating Edge Cases**
+
+I'm now focusing on evaluating the logic for edge cases in my LeetCode 1224 solution. I'm carefully scrutinizing the conditional checks for the cases where a solution is possible. Specifically, I'm verifying the correctness of the conditions where either all frequencies are 1, or there's a single element type. Additionally, I'm examining the scenario where one element appears only once and all others have identical frequencies, trying to ensure there are no off-by-one errors.
+
 ## Commands
 
 *No content*
@@ -96,4 +117,4 @@ In the optimized $O(N)$ version shown at the end of the video, you don't use `nu
 ---
 
 *Created: February 16, 2026 at 02:13 PM*
-*Updated: February 16, 2026 at 02:13 PM*
+*Updated: February 16, 2026 at 02:14 PM*
